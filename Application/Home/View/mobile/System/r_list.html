@@ -1,0 +1,72 @@
+<extend name="Base/main" xmlns=""/>
+
+<block name="body">
+    <div id="reports">
+        <p>举报列表</p>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>操作</th>
+            </tr>
+            <volist name="list" id="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.title}</td>
+                    <td>
+                        <a href="{:U('Home/System/r_view',array('id'=>$vo['id']))}">查看</a>
+                        <if condition="($uid eq 1) and ($vo['is_review'] eq 0)" >
+                            <a href="{:U('Home/System/r_review',array('id'=>$vo['id']))}">审核</a>
+                        </if>
+                        <if condition="($uid eq 1) or ($uid eq $vo['rep_admin'])">
+                            <a href="{:U('Home/System/r_del',array('id'=>$vo['id']))}">删除</a>
+                            <a href="{:U('Home/System/r_edit',array('id'=>$vo['id']))}">修改</a>
+                        </if>
+                    </td>
+                </tr>
+            </volist>
+            <tr><td colspan="3" align="center"><a href="{:U('Home/System/r_add',array('id'=>$vo['id']))}">新增举报</a></td></tr>
+        </table>
+        <div id="page">{$page}</div>
+    </div>
+<style type="text/css">
+#reports{
+    width: 100%;
+}
+#reports p{
+    text-align: center;
+    background: #383838;
+    color:white;
+    font-weight: normal;
+    height:30px;
+    line-height:30px;
+    display: block;
+}
+#reports table{
+    width:100%;
+    /*border:1px solid #1c8a8c;*/
+}
+#reports table th{
+    font-weight:normal;
+    border:1px solid #1c8a8c;
+    padding: 9px;
+}
+#reports table tr td{
+    width:33%;
+    padding:9px;
+    border:1px solid #1c8a8c;
+}
+#reports table a{
+    color:blue;
+}
+#reports span{
+    background: #383838;
+    color:white;
+}
+#reports #page{
+    padding:10px;
+    text-align: center;
+}
+</style>
+</block>
+

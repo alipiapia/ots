@@ -1,0 +1,60 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<div class="location">
+    <span class="fa fa-home"></span>
+    <a href="{:U('Home/Index/index')}">首页</a>&nbsp;
+    <span class="fa fa-angle-right"></span>&nbsp;
+    <a href="{:U('Home/Enterprise/e_list')}">{$p_cats.title}</a>&nbsp;
+    <span class="fa fa-angle-right"></span>&nbsp;
+    <a  id="address">{$cats[$c_id]['title']}</a>
+</div>
+
+<div class="new_cen">
+    <div class="new_left">
+        <ul id="tabs">
+            <volist name="cats" id="c">
+                <li><a href="{:U('Home/Enterprise/e_list?category_id='.$c['id'])}">{$c.title}</a></li>
+            </volist>
+        </ul>
+    </div>
+    <div class="new_right">
+        <div class="new_list">
+        <volist name="data" id="arr">
+            <dl>
+                <dd>
+                    <a href="{:U('Home/Enterprise/detail',array('id'=>$arr['id']))}" class="new_list_tit">
+                        <h2>{$arr.title}</h2>
+                        <span>{$arr.description|msubstr=0,40,'utf-8',true}<a href="{:U('Home/Enterprise/detail',array('id'=>$arr['id']))}" class="tit_list">[详情]</a></span>
+                    </a>
+                </dd>
+                <dt>
+                    <span>{$arr.create_time|date='d',###}</span><small>{$arr.create_time|date='M',###|substr=0,3}.</small>
+                </dt>
+            </dl>
+        </volist>
+        <div class="page">
+            {$page}
+        </div>
+        </div>
+
+
+    </div>
+</div>
+</block>
+<block name="script">
+<script type="text/javascript">
+    // var arr=['企业概况','企业文化','核心优势']
+    // $(document).ready(function() {
+    //     $('#tabs li').click(function(){
+    //         $(this).siblings().css('background','#222') .css('color','#fff');/*改变他所有兄弟的背景颜色*/
+    //         $(this).css('background','#75C01F');/*改变他的属性*/
+    //         var index = $(this).index();
+    //         $('.enterprise_article').hide(); /*隐藏所有的这个容器*/
+    //         $('.enterprise_article').eq(index).show();/*显示其中一个容器*/
+    //         $('#address').html(arr[index])
+    //     });
+    // });
+</script>
+</block>

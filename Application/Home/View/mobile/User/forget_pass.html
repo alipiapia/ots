@@ -1,0 +1,48 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+    <div class="means">
+		<form method="post" action="{:U('Home/User/forget_pass')}" name="form">
+	        <div class="form_input">
+	        	<input type="text" name="username" placeholder="请输入用户名" />
+	        </div>
+	        <div class="form_input">
+	        	<input type="text" name="email" placeholder="请输入注册时使用的邮箱" />
+	        </div>
+            <span id="abc">　</span>
+	        <input type="submit" onclick="s()" class="means_m_loading" value="确  定">
+		</form>
+    </div>
+
+<script>
+function s(){
+	var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+        if(fm.username.value == ''){
+            document.getElementById('abc').innerHTML='请输入用户名!';
+            // fm.email.value = '';//清空    
+            fm.username.focus();   //将光标移至 表单字段
+            return false;
+        }
+        //邮箱验证
+        if(!/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/.test(fm.email.value)){
+            // alert('邮件格式不正确!');
+            document.getElementById('abc').innerHTML='邮箱格式不正确!';
+            // fm.email.value = '';//清空    
+            fm.email.focus();   //将光标移至 表单字段
+            return false;
+        }
+        return true;
+    };
+}
+
+</script>
+</block>
+
+
+
+
+
+

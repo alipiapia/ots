@@ -1,0 +1,44 @@
+<extend name="Base/main" />
+
+<block name="body">
+  <!-- <div class="ibanner"><img src="__MOBILE__/images/banner.png"></div> -->
+	<div id="pro_result">
+		<h2>查询结果</h2>
+        <if condition="is_array($pro_data)">
+	            <if condition="$pro_data.query_logs elt 1">
+	                <p>这是您的第：{$pro_data.query_logs}次查询，当前产品为正品！</p>
+	            <else/>
+	                <p>这是您的第：<span style="color:red;">{$pro_data.query_logs}</span>次查询，如产品有问题请联系厂家！</p>
+	            </if>
+		            <p>产品编号：{$pro_data.pro_no}</p>
+		            <p>产品名称：{$pro_data.pro_name}</p>
+		            <p>品　　牌：{$pro_data.pro_brand}</p>
+		            <p>产品介绍：{$pro_data.pro_content}</p>
+        <elseif  condition="$pro_data eq 'no'"/>
+            <div id="pro_no"><span>找不到该产品!</span><div>
+        </if>
+    </div>
+
+<style type="text/css">
+#pro_result{
+
+
+}
+#pro_result h2{
+	text-align: center;
+	padding: 20px 0 0 0;
+}
+#pro_result p{
+	margin-left: 10%;
+}
+
+#pro_no{
+	text-align: center;
+	color: red;
+	margin: 100px auto;
+}
+
+
+</style>
+
+</block>

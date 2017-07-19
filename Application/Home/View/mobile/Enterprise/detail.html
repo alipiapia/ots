@@ -1,0 +1,52 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<div class="ibanner"><img src="__ROOT__{:get_cover($p_find['cover_id'], $field = path)}"></div>
+
+<ul id="tabs" class="tabs">
+    <volist name="cats" id="c">
+        <li><a href="{:U('Home/Enterprise/e_list', array('category_id' => $c['id']))}">{$c.title}</a></li>
+    </volist>
+</ul>
+<div class="content">
+    <h2 style="font-size:bold;text-align:center;">{$data.title}</h2>
+    <!--<p><small>发布时间：{$data.create_time|date='Y-m-d',###}</small><small>作者：{:get_username($data['uid'])}</small></p>-->
+    <span>{$data.content}</span>
+</div>
+
+</block>
+
+<block name="script">
+
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="__MOBILE__/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="__MOBILE__/js/amazeui.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tabs li').click(function(){
+            $(this).siblings().css('background','#222') .css('color','#fff');/*改变他所有兄弟的背景颜色*/
+            $(this).css('background','#75C01F');/*改变他的属性*/
+            var index = $(this).index();
+            $('.m_new_article').hide(); /*隐藏所有的这个容器*/
+            $('.m_new_article').eq(index).show();/*显示其中一个容器*/
+        });
+    });
+</script>
+<style type="text/css">
+.content{
+    width: 100%;
+}
+.content span{
+    width: 100%;
+}
+.content span img{
+    height: auto;
+    width: 100%;
+}
+</style>
+
+</block>

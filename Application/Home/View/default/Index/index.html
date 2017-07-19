@@ -1,0 +1,122 @@
+﻿<extend name="Base/main" />
+
+<block name="body">
+    
+    <!-- 轮播图css -->
+    <script type="text/javascript" src="__JS__/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="__JS__/lubotu.js"></script>
+    <link href="__CSS__/banner.css" rel="stylesheet">
+
+<div class="lubo">
+  <ul class="lubo_box">
+    <volist name="slide" id="s">
+        <li><a style="background:url({$s['pic_id']}) center top no-repeat"></a></li>
+    </volist>
+  </ul>
+</div>
+  <div class="hotLine">
+    <div class="w1200 clearfix">
+        <p class="telephone"><i></i><?php echo C(COMPANY_PHONE); ?></p>
+        <div class="queryBox">
+            <form name="form_cert" id="form_cert" action="{:U('Home/Certs/get_cert')}" method="post">
+                <input type="text" name="cert_no" id="cert_no">
+                <input type="submit" value="证书查询">
+            </form>
+            <form name="form_product" id="form_product" action="{:U('Home/Products/get_product')}" method="post">
+                <input type="text" name="pro_no" id="pro_no">
+                <input type="submit" value="真伪查询">
+            </form>
+        </div>
+    </div>
+  </div>
+    <div class="productBox">
+        <h1><span>产品介绍<br/><small>PRODUCTS</small></span><a href="{:U('Home/Products/p_list')}"></a></h1>
+        <div class="productList clearfix">
+        <volist name="docs" id="d">
+            <div class="productCase">
+                <p><a href="{:U('Home/Products/detail',array('id' => $d['id']))}"><img src="__ROOT__{:get_cover($d['cover_id'],$field = path)}"/></a></p>
+            
+				<p>{$d.description|msubstr=0,100,'utf-8',true}</p>
+                <p><a href="{:U('Home/Products/detail',array('id' => $d['id']))}">+</a></p>
+            </div>
+        </volist>
+        </div>
+    </div>
+    <div class="joinBox">
+        <div class="w1200">
+            <h1 class="clearfix"><span>{$join.title}<br/></span></h1>
+            <div id="jiamen"><p>{$join.content}</p></div>
+        </div>
+    </div>
+    <div class="iContentBox clearfix">
+        <div class="companyProfile">
+            <h1>公司概况<br/><small>COMPANY PROFILE</small></h1>
+            <div class="cpContainer clearfix">
+                <p><img src="__ROOT__{:get_cover($art['cover_id'],$field = path)}" alt="公司介绍"></p>
+                <div>
+                    <p>{$art.description|msubstr=0,100,'utf-8',true}</p>
+                    <a href="{:U('Home/Enterprise/detail', array('id' => 1))}"></a>
+                </div>
+            </div>
+                <p class="iNewsLine"></p>
+        </div>
+        <div class="companyNew">
+            <h1 class="clearfix"><span>公司新闻<br/><small>COMPANY NEWS</small></span><a href="{:U('Home/News/n_list', array('category_id' => 40))}"></a></h1>
+            <div class="iNewsBox">
+
+            <volist name="news" id="n">
+                <div class="iNewsCase clearfix">
+                    <p class="iNewsDate">
+                        <span>{$n.create_time|date='d',###}</span>
+                        <small>{$n.create_time|date='M',###|substr=0,3}.</small>
+                    </p>
+                    <div class="iNewsCon">
+                        <h2 class="clearfix"><a href="{:U('Home/News/detail', array('id' => $n['id']))}">{$n.title}</a><span>{$n.create_time|date='Y-m-d',###}</span></h2>
+                        <p>{$n.description|msubstr=0,100,'utf-8',true}</p>
+                    </div>
+                </div>
+                <p class="iNewsLine"></p>
+            </volist>
+
+            </div>
+        </div>
+    </div>
+
+
+</block>
+
+
+<block name="script">
+<script>
+    var form1 = document.getElementById("form_cert");
+    var form2 = document.getElementById("form_product");
+    // alert(form1.cert_no.value);return false;
+    form1.onsubmit=function(){
+        if (form1.cert_no.value == '') {
+            alert("证书编号不得为空!");
+            // document.getElementById('abc').innerHTML='证书编号不得为空!';
+            form1.cert_no.focus();
+            return false;
+        }
+    };
+    form2.onsubmit=function(){
+        if (form2.pro_no.value == '') {
+            alert("产品编号不得为空!");
+            // document.getElementById('abc').innerHTML='产品编号不得为空!';
+            form2.pro_no.focus();
+            return false;
+        }
+    };
+
+
+    // 轮播图
+    $(function(){
+
+        $(".lubo").lubo({
+
+        });
+
+    })
+
+</script>
+</block>

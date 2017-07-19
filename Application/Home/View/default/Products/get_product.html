@@ -1,0 +1,61 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<div class="location">
+    <span class="fa fa-home"></span>
+    <a href="{:U('Home/Index/index')}">首页</a>&nbsp;
+    <span class="fa fa-angle-right"></span>&nbsp;
+    <a href="javascript:void(0);">产品管理</a>&nbsp;
+    <span class="fa fa-angle-right"></span>&nbsp;
+    <a href="javascript:void(0);" id="address">产品查询</a>
+</div>
+
+<div class="new_cen">
+    <div class="new_left">
+        <ul id="tabs">
+            <li><a href="{:U('Home/Products/get_product')}">产品查询</a></li>
+            <li><a href="{:U('Home/Certs/get_cert')}">证书查询</a></li>
+        </ul>
+    </div>
+    <div class="new_right">
+        <form name="form_agent" action="{:U('Home/Products/get_product')}" method="post">
+            <input type="text" class="pro_input" name="pro_no" id="pro_no" value="{$pro_no}" placeholder="请输入产品编号">
+            <input type="submit" class="pro_submit" value="产品查询">
+            <span id="abc">　</span>
+        </form>
+
+        <div class="">
+        <if condition="is_array($pro_data)">
+        <div></div>
+            <if condition="$pro_data.query_logs elt 1">
+                <b>这是您的第：{$pro_data.query_logs}次查询，恭喜您，当前产品为正品！</b><br/>
+            <else/>
+                <b>这是您的第：{$pro_data.query_logs}次查询，如产品有问题请联系厂家！</b><br/>
+            </if>
+            产品编号：{$pro_data.pro_no}<br/>
+            产品名称：{$pro_data.pro_name}<br/>
+            品牌：{$pro_data.pro_brand}<br/>
+            产品介绍：{$pro_data.pro_content}
+        <elseif  condition="$pro_data eq 'no'"/>
+            <b>找不到产品！</b>
+        <else/>
+        </if>
+        </div>
+
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+    var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+        if (fm.cert_no.value == '') {
+            document.getElementById('abc').innerHTML='编号不能为空！!';
+            fm.cert_no.focus();
+            return false;
+        }};
+</script>
+</block>

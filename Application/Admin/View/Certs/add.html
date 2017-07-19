@@ -1,0 +1,48 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+    </div>
+    <form action="{:U('add')}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">证书编号<span class="check-tips">（用于辨别证书）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="cert_no" >
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">有效时间<span class="check-tips">（证书有效时间）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="V_period" >
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">开始时间<span class="check-tips">（证书开始时间）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="begin_time" >
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">结束时间<span class="check-tips">（证书结束时间）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="end_time" >
+            </div>
+        </div>
+        
+        <div class="form-item">
+            <button class="btn submit-btn" id="submit"  type="submit" target-form="form-horizontal">确 定</button>
+
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        Think.setValue("type", {$info.type|default=0});
+        Think.setValue("group", {$info.group|default=0});
+        //导航高亮
+        highlight_subnav('{:U('Config/index')}');
+    </script>
+</block>

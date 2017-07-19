@@ -1,0 +1,54 @@
+<extend name="Base/main" />
+
+<block name="body">
+	<!-- <div class="ibanner"><img src="__MOBILE__/images/banner.png"></div> -->
+	    <div id="cert_width">
+	    	<h2>查询结果</h2>
+	        <notempty name="agent_data">
+	            <if condition="$agent_data['status'] eq 1">
+
+	                <if condition="is_array($cert_data)">
+	                    <div>
+	                        <img src="__ROOT__{$cert_data.pic_url}">
+	                    </div>
+	                <else/>
+	                    <p>证书未更新，请联系管理员！</p>
+	                </if>
+
+	            <elseif condition="$agent_data['status'] eq 0"/>
+	                <p>您查询的代理商为试用期代理商，尚未取得正式授权，请稍后再试！</p>
+	            <elseif condition="$agent_data['status'] eq 2"/>
+	                <p>对不起，您查询的代理商未授权，谨防上当受骗！</p>
+	            <elseif  condition="$agent_data['status'] eq 3"/>
+	                <p>此人违规，授权作废。所有代理商停止供货，一经发现，一并处罚！</p>
+	            <else />
+	                <p>找不到证书</p>
+	            </if>
+
+	        <else/>
+	            <if condition="is_array($cert_data)">
+	                <div>
+	                    <img src="__ROOT__{$cert_data.pic_url}">
+	                </div>
+	            <else/>
+	                <p>找不到证书！</p>
+	            </if>
+	        </notempty>
+        </div>
+
+<style type="text/css">
+	#cert_width img{
+		width: 100%;
+	}
+	#cert_width h2{
+		padding: 20px 0 0 0;
+		text-align: center;
+	}
+	#cert_width p{
+		text-align: center;
+		color: red;
+		margin: 100px auto;
+	}
+</style>
+
+</block>

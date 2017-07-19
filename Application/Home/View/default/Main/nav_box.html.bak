@@ -1,0 +1,13 @@
+<div class="nav_box">
+    <nav class="w1200 clearfix">
+        <img src="{$logo['pic_id']}" id="logo">
+        <!-- <a href="index.html" id="logo" style="background: url({$logo['pic_id']}) no-repeat;"></a> -->
+        <div class="navBox">
+            <a href="{:U('Home/Index/index')}">首页<br/><small>Home</small></a>
+            <a href="{:U('Home/Products/p_list')}">产品展示<br/><small>Products</small></a>
+            <a href="{:U('Home/Enterprise/e_list')}">企业介绍<br/><small>Company Introduction</small></a>
+            <a href="{:U('Home/News/n_list')}">新闻中心<br/><small>News</small></a>
+            <a href="{:U('Home/Contact/us')}">联系我们<br/><small>Contact Us</small></a>
+        </div>
+    </nav>
+</div>

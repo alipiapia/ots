@@ -1,0 +1,44 @@
+<extend name="Base/main" />
+
+<block name="body">
+<div class="login_bar" id="login_bar">
+    <div class="registered real">
+        <h2>找回密码</h2>
+        <form action="{:U('Home/User/forget_pass')}" method="post" name="form">
+            <input type="text" name="username" placeholder="请输入用户名" />
+            <input type="text" name="email" placeholder="请输入注册时使用的邮箱" />
+            <span id="abc">　</span>
+            <input type="submit" class="submit" name="submit" value="确 定"/>
+        </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script>
+    var oH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    document.getElementsByTagName('body')[0].style.height = oH + 'px';
+    document.getElementById('login_bar').style.height = (oH - 174) + 'px';
+
+    var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+        if(fm.username.value == ''){
+            document.getElementById('abc').innerHTML='请输入用户名!';
+            // fm.email.value = '';//清空    
+            fm.username.focus();   //将光标移至 表单字段
+            return false;
+        }
+        //邮箱验证
+        if(!/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/.test(fm.email.value)){
+            // alert('邮件格式不正确!');
+            document.getElementById('abc').innerHTML='邮箱格式不正确!';
+            // fm.email.value = '';//清空    
+            fm.email.focus();   //将光标移至 表单字段
+            return false;
+        }
+        return true;
+    };
+
+</script>
+</block>

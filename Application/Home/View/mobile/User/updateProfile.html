@@ -1,0 +1,47 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+    <div class="means">
+		<form method="post" action="{:U('Home/User/updateProfile')}" name="form">
+	        <div class="form_input">
+	        	<input type="text" name="region" placeholder="请输入地区" value="{$info.region|default=''}" />
+	        </div>
+	        <div class="form_input">
+	        	<input type="text" name="company" placeholder="请输入公司名称" value="{$info.company|default=''}"/>
+	        </div>
+            <span id="abc">　</span>
+	        <input type="submit" onclick="s()" class="means_m_loading" value="确  定">
+		</form>
+    </div>
+
+<script>
+function s(){
+	var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+    	
+        if (fm.region.value == '') {
+            document.getElementById('abc').innerHTML='地区不能为空!';
+            fm.region.focus(); //将焦点以至表单字段
+            return false;
+        }
+        
+        if(fm.company.value.length == ''){
+            document.getElementById('abc').innerHTML='公司名称不能为空!';
+            fm.company.value = '';//清空 
+            fm.company.focus();   //将光标移至 表单字段
+            return false;
+        }
+        return true;
+    };
+}
+
+</script>
+</block>
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default" id="">
+        <ul class="am-navbar-nav am-cf am-avg-sm-4">
+            <li>
+                <a href="{:U('Home/Index/index')}" class="">
+                    <span class="am-icon-home"></span>
+                    <span class="am-navbar-label">首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Products/p_list')}" class="">
+                    <span class="am-icon-product-hunt"></span>
+                    <span class="am-navbar-label">产品</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Enterprise/e_list')}" class="">
+                    <span class="am-icon-external-link"></span>
+                    <span class="am-navbar-label">企业</span>
+                </a>
+            </li>
+            <li >
+                <a href="{:U('Home/News/n_list')}" class="">
+                    <span class="am-icon-newspaper-o"></span>
+                    <span class="am-navbar-label">新闻</span>
+                </a>
+            </li>
+            <li >
+                <a href="{:U('Home/Contact/us')}" class="">
+                    <span class="am-icon-user"></span>
+                    <span class="am-navbar-label">关于</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+      <!-- 左侧边栏内容 -->
+      <div id="doc-oc-demo1" class="am-offcanvas">
+            <div class="am-offcanvas-bar">
+                  <div class="am-offcanvas-content">
+                          <p><a href="{:U('Home/Index/index')}">首页</a></p>
+                          <p><a href="{:U('Home/Products/p_list')}">产品介绍</a></p>
+                          <p><a href="{:U('Home/Enterprise/e_list')}">企业介绍</a></p>
+                          <p><a href="{:U('Home/News/n_list')}">新闻中心</a></p>
+                          <p><a href="{:U('Home/Contact/us')}">联系我们</a></p>
+                  </div>
+            </div>
+      </div>
+
+    <!-- 右侧边栏内容 -->
+      <div id="doc-oc-demo2" class="am-offcanvas">
+        <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+          <div class="am-offcanvas-content">
+
+            <if condition="is_login()">
+              <p><a href="javascript:void(0)">{:get_username()}</a></p>
+              <p><a href="{:U('Home/User/updateProfile')}">完善资料</a></p>
+              <p><a href="{:U('Home/User/profile')}">密码修改</a></p>
+              <p><a href="{:U('Home/User/real_auth')}">实名认证</a></p>
+                <eq name="is_review" value="1">
+                    <p><a href="{:U('Home/System/a_list')}">我的团队</a></p>
+                    <p><a href="{:U('Home/System/x_list')}">邀请码</a></p>
+                    <p><a href="{:U('Home/System/r_list')}">投诉建议</a></p>
+                    <p><a href="{:U('Home/System/c_list')}">我的证书</a></p>
+                </eq>
+                <p><a href="{:U('Home/User/logout')}">退出</a></p>
+            <else />
+              <p><a href="{:U('Home/User/login')}">代理登录</a></p>
+              <p><a href="{:U('Home/User/register')}">申请代理</a></p>
+              <p><a href="{:U('Home/Reports/r_list')}">投诉建议</a></p>
+            </if>
+<!--               <p><a href="{:U('Admin/Public/login')}">代理商登录</a></p>
+              <p><a href="{:U('Home/Reports/r_list')}">举报</a></p> -->
+          </div>
+        </div>
+      </div>

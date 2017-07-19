@@ -1,0 +1,80 @@
+<extend name="Base/main" />
+
+<block name="body">
+    <div id="agents">
+        <form action="{:U('Home/System/r_add',array('id'=>$list['id']))}" method="post">
+        <span>查看举报</span>
+            <table>
+                <tr>
+                    <td>标题</td>
+                    <td><input type="text" name="title"></td>
+                </tr>
+                <tr>
+                    <td>举报对象</td>
+                    <td><input type="text" name="agent_name"></td>
+                </tr>
+                <tr>
+                    <td>举报内容</td>
+                    <td>
+                        <textarea name="contents"></textarea>
+                    </td>
+                </tr>
+            </table>
+
+            <div id="re">
+                <input type="hidden" name="id" value="{$list.id|default=''}">
+                <button class="btn submit-btn" id="submit" type="submit" target-form="form-horizontal">提  交</button>
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+            </div>
+        </form>
+    </div>
+
+<style type="text/css">
+#agents{
+    width: 100%;
+}
+#agents span{
+    text-align: center;
+    background: #383838;
+    color:white;
+    font-weight: normal;
+    height:30px;
+    line-height:30px;
+    display: block;
+}
+#agents table{
+    width:100%;
+    /*border:1px solid #1c8a8c;*/
+}
+#agents #re{
+    width: 80%;
+    text-align: center;
+    margin:0 auto;
+}
+#agents button{
+    width: 80%;
+    border:0;
+    width: 140px;
+    background: #75C01F;
+    color:white;
+    border-radius: 4px;
+    height:34px;
+    margin:10px;
+}
+#agents table tr td{
+    padding:9px;
+    border:1px solid #1c8a8c;
+}
+#agents table tr td img{
+    width:100%;
+}
+#agents table tr td textarea{
+    width:100%;
+    height:100%;
+}
+#agents table a{
+    color:blue;
+}
+</style>
+</block>
+

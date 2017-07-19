@@ -1,0 +1,27 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<div class="ibanner"><img src="__ROOT__{:get_cover($p_find['cover_id'], $field = path)}"></div>
+
+<ul id="tabs" class="tabs">
+    <volist name="cats" id="c">
+        <li><a href="{:U('Home/Products/p_list', array('category_id' => $c['id']))}">{$c.title}</a></li>
+    </volist>
+</ul>
+<div class="m_pro_list">
+    <volist name="data" id="arr">
+        <dl>
+            <a href="{:U('Home/Products/detail' ,array('id' => $arr['id']))}">
+                <dt><img src="__ROOT__{:get_cover($arr['cover_id'], $field = path)}" /></dt>
+                <dd>
+                    <p>{$arr.title}</p>
+                    <span>{$arr.description|msubstr=0,40,'utf-8',true}</span>
+                </dd>
+            </a>
+        </dl>
+    </volist>
+{$page}
+</div>
+</block>
+

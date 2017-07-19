@@ -1,0 +1,55 @@
+<extend name="Base/main" />
+
+<block name="body">
+<div class="login_bar" id="login_bar">
+    <div class="login">
+        <h2>登 录</h2>
+        <form action="{:U('Home/User/login')}" method="post">
+            <div class="input">
+                <i class="fa fa-user"></i>
+                <input name="username" type="text" placeholder="请输入用户名"/>
+            </div>
+            <div class="input">
+                <i class="fa fa-key"></i>
+                <input name="password" type="password" placeholder="请输入密码"/>
+            </div>
+            <div class="name">
+                <small class="fl">
+                <input name="Fruit" type="checkbox" value="" />记住密码
+                </small>
+                <a class="fr" href="{:U('Home/User/forget_pass')}">忘记密码？</a>
+            </div>
+            <span id="abc">　</span>
+            <button type="submit" style="border:none;" class="loading">立即登录</button>
+        </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script>
+    var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+        if (fm.username.value == '') {
+            // alert('用户名不得为空!');
+            document.getElementById('abc').innerHTML='用户名不得为空!';
+            fm.username.focus(); //将焦点以至表单字段
+            return false;
+        }
+        
+        
+        //密码验证
+        if(fm.password.value.length == ''){
+            // alert('密码不得小于6位!'); 
+            document.getElementById('abc').innerHTML='密码不得为空!';
+            // fm.password.value = '';//清空 
+            fm.password.focus();   //将光标移至 表单字段
+            return false;
+        }
+    };
+    var oH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    document.getElementsByTagName('body')[0].style.height = oH + 'px';
+    document.getElementById('login_bar').style.height = (oH - 174) + 'px';
+</script>
+</block>

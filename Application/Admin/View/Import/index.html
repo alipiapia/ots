@@ -1,0 +1,21 @@
+<block name="head">
+<title>使用PHP导入和导出数据为Excel文件</title>
+</block>
+
+<block name="body">
+
+<div id="main">
+  <!-- <h2 class="top_title"><a href="http://www.phpthinking.com/archives/560">使用PHP导入和导出数据为Excel文件</a></h2> -->
+  <div class="demo">
+      <form id="addform" action="{:U('Admin/Import/import')}" method="post" enctype="multipart/form-data">
+         <p>请选择要导入的XLS文件：<br/><input type="file" name="file"> <input type="submit" class="btn" value="导入XLS">
+         <input type="button" class="btn" id="exportCSV" value="导出XLS" onClick="window.location.href='do.php?action=export'"></p>
+      </form>
+  </div>
+</div>
+<!-- <div id="footer">
+    <p>By <a href="http://www.phpthinking.com">phpthinking.com</a></p>
+</div> -->
+
+</block>
+

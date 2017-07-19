@@ -1,0 +1,69 @@
+<extend name="Base/main" />
+
+<block name="body">
+    <div id="agents">
+        <span>查看举报</span>
+            <table>
+                <tr>
+                    <td>标题</td>
+                    <td>{$list.title|default=''}</td>
+                </tr>
+                <tr>
+                    <td>举报对象</td>
+                    <td>{$list.agent_name|default=''}</td>
+                </tr>
+                <tr>
+                    <td>举报内容</td>
+                    <td>{$list.contents|default=''}</td>
+                </tr>
+            </table>
+            <!--{$page}-->
+            <div id="re">
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+            </div>
+    </div>
+<style type="text/css">
+#agents{
+    width: 100%;
+}
+#agents span{
+    text-align: center;
+    background: #383838;
+    color:white;
+    font-weight: normal;
+    height:30px;
+    line-height:30px;
+    display: block;
+}
+#agents table{
+    width:100%;
+    /*border:1px solid #1c8a8c;*/
+}
+#agents #re{
+    width: 80%;
+    text-align: center;
+    margin:0 auto;
+}
+#agents button{
+    width: 80%;
+    border:0;
+    width: 140px;
+    background: #75C01F;
+    color:white;
+    border-radius: 4px;
+    height:34px;
+    margin:10px;
+}
+#agents table tr td{
+    padding:9px;
+    border:1px solid #1c8a8c;
+}
+#agents table tr td img{
+    width:100%;
+}
+#agents table a{
+    color:blue;
+}
+</style>
+</block>
+

@@ -1,0 +1,79 @@
+<extend name="Base/main" />
+
+<block name="body">
+    <div id="invcode">
+        <p>邀请码列表</p>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>邀请码</th>
+                <th>使用状态</th>
+                <th>操作</th>
+            </tr>
+            <volist name="list" id="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.xcode}</td>
+                    <td>
+                        <eq name="vo.status" value="1">已使用
+                        <else/>未使用
+                        </eq>
+                    </td>
+                    <td>
+                        <eq name="vo.status" value="0">
+                            <a href="{:U('Home/System/x_del',array('id'=>$vo['id']))}">删除</a>
+                        <else/>
+                        </eq>
+                    </td>
+                </tr>
+            </volist>
+            <tr>
+                <td colspan="4" align="center">
+                    <notempty name="cids">
+                        <a href="{:U('Home/System/gen_xcode',array('id'=>$vo['id']))}">生成邀请码</a>
+                    </notempty>
+                </td>
+            </tr>
+        </table>
+        <div id="page">{$page}</div>
+    </div>
+<style type="text/css">
+#invcode{
+    width: 100%;
+}
+#invcode p{
+    text-align: center;
+    background: #383838;
+    color:white;
+    font-weight: normal;
+    height:30px;
+    line-height:30px;
+    display: block;
+}
+#invcode table{
+    width:100%;
+    /*border:1px solid #1c8a8c;*/
+}
+#invcode table th{
+    font-weight:normal;
+    border:1px solid #1c8a8c;
+    padding: 9px;
+}
+#invcode table tr td{
+    padding:9px;
+    border:1px solid #1c8a8c;
+}
+#invcode table a{
+    color:blue;
+}
+#invcode span{
+    background: #383838;
+    color:white;
+}
+#invcode #page{
+    padding:10px;
+    text-align: center;
+}
+</style>
+</block>
+

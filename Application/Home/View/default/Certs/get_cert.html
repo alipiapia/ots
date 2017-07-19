@@ -1,0 +1,112 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<div class="location">
+    <span class="fa fa-home"></span>
+    <a href="{:U('Home/Index/index')}">首页</a>&nbsp;
+    <span class="fa fa-angle-right"></span>&nbsp;
+    <a href="javascript:void(0);">证书管理</a>&nbsp;
+    <span class="fa fa-angle-right"></span>&nbsp;
+    <a href="javascript:void(0);" id="address">证书查询</a>
+</div>
+
+<div class="new_cen">
+    <div class="new_left">
+        <ul id="tabs">
+            <li><a href="{:U('Home/Products/get_product')}">产品查询</a></li>
+            <li><a href="{:U('Home/Certs/get_cert')}">证书查询</a></li>
+        </ul>
+    </div>
+    <div class="new_right">
+        <form name="form_agent" action="{:U('Home/Certs/get_cert')}" method="post">
+            <input type="text" class="certs_input" name="cert_no" id="cert_no" value="{$cert_no}" placeholder="证书编号/手机号码/微信ID">
+            <input type="submit" class="certs_submit" value="证书查询">
+            <span id="abc">　</span>
+        </form>
+
+<!--         <div class="">
+        <if condition="is_array($agent_data)">
+            姓名：{$agent_data.real_name}<br/>
+            手机号码：{$agent_data.mobile}<br/>
+            代理商编号：{$agent_data.agent_no}<br/>
+            授权开始日期：{$agent_data.review_begin_time|date='Y-m-d',###}<br/>
+            授权结束日期：{$agent_data.review_end_time|date='Y-m-d',###}<br/>
+            <notempty name="agent_data.agent_grade">代理等级：{:getTitlebyPid($agent_data.agent_grade)}<br/></notempty>
+            <notempty name="agent_data.region">地区：{$agent_data.region}<br/></notempty>
+            <notempty name="agent_data.company">公司：{$agent_data.company}<br/></notempty>
+        <elseif  condition="$agent_data eq 'no'"/>
+            <b>找不到代理商！</b>
+        <else/>
+        </if>
+        </div> -->
+
+<!--         <div>
+        <if condition="is_array($cert_data)">
+            <div>
+                <img src="__ROOT__{$cert_data.pic_url}">
+            </div>
+        <elseif  condition="($cert_data eq 'no') AND ($agent_data neq 'no')"/>
+            <if condition="$agent_data['status'] eq 0">
+                <b>您查询的代理商为试用期代理商，尚未取得正式授权，请稍后再试！</b>
+            <elseif condition="$agent_data['status'] eq 2"/>
+                <b>对不起，您查询的代理商未授权，谨防上当受骗！</b>
+            <elseif  condition="$agent_data['status'] eq 3"/>
+                <b>此人违规，授权作废。所有代理商停止供货，一经发现，一并处罚！</b>
+            <else />
+                <b>证书未更新，请联系管理员!</b>
+            </if>
+        <else/>
+            <b>找不到证书！</b>
+        </if>
+        </div> -->
+
+    <div class="clearfix">
+        <p class="iNewsLine"></p>
+        <notempty name="agent_data">
+            <if condition="$agent_data['status'] eq 1">
+
+                <if condition="is_array($cert_data)">
+                    <div>
+                        <img src="__ROOT__{$cert_data.pic_url}">
+                    </div>
+                <else/>
+                    <b>证书未更新，请联系管理员！</b>
+                </if>
+
+            <elseif condition="$agent_data['status'] eq 0"/>
+                <b>您查询的代理商为试用期代理商，尚未取得正式授权，请稍后再试！</b>
+            <elseif condition="$agent_data['status'] eq 2"/>
+                <b>对不起，您查询的代理商未授权，谨防上当受骗！</b>
+            <elseif  condition="$agent_data['status'] eq 3"/>
+                <b>此人违规，授权作废。所有代理商停止供货，一经发现，一并处罚！</b>
+            <else />
+                <b>找不到证书</b>
+            </if>
+
+        <else/>
+            <if condition="is_array($cert_data)">
+                <div>
+                    <img src="__ROOT__{$cert_data.pic_url}">
+                </div>
+            <else/>
+                <b>找不到证书！</b>
+            </if>
+        </notempty>
+    </div>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+    var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+        if (fm.cert_no.value == '') {
+            document.getElementById('abc').innerHTML='编号不能为空！!';
+            fm.cert_no.focus();
+            return false;
+        }};
+</script>
+</block>

@@ -1,0 +1,53 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<div class="ibanner"><img src="__ROOT__{:get_cover($p_find['cover_id'], $field = path)}"></div>
+
+<ul id="tabs" class="tabs">
+    <volist name="cats" id="c">
+        <li><a href="{:U('Home/Enterprise/e_list', array('category_id' => $c['id']))}">{$c.title}</a></li>
+    </volist>
+</ul>
+<div class="m_new_list">
+    <volist name="data" id="arr">
+        <dl>
+            <dt><img src="__ROOT__{:get_cover($arr['cover_id'], $field = path)}" /></dt>
+            <dd>
+                <a href="{:U('Home/Enterprise/detail' ,array('id' => $arr['id']))}">
+                    <h3>{$arr.title}</h3>
+                    <span>{$arr.description|msubstr=0,40,'utf-8',true}</span>
+                    <p>
+					<small>发布时间：{$arr.create_time|date='Y-m-d',###}</small>
+					<!--<small>&nbsp;作者：{:get_username($arr['uid'])}</small>-->
+					</p>
+                </a>
+            </dd>
+        </dl>
+    </volist>
+{$page}
+</div>
+
+</block>
+
+<block name="script">
+
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="__MOBILE__/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="__MOBILE__/js/amazeui.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tabs li').click(function(){
+            $(this).siblings().css('background','#222') .css('color','#fff');/*改变他所有兄弟的背景颜色*/
+            $(this).css('background','#75C01F');/*改变他的属性*/
+            var index = $(this).index();
+            $('.m_new_list').hide(); /*隐藏所有的这个容器*/
+            $('.m_new_list').eq(index).show();/*显示其中一个容器*/
+        });
+    });
+</script>
+
+</block>

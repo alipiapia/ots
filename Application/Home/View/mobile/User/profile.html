@@ -1,0 +1,62 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+    <div class="repassword">
+		<form method="post" action="{:U('Home/User/profile')}" name="form">
+	        <div class="form_input">
+	        	<input type="password" placeholder="请输入原密码" name="old">
+	        </div>
+	        <div class="form_input">
+	        	<input type="password" placeholder="请输入新密码" name="password">
+	        </div>
+            <div class="form_input">
+                <input type="password" placeholder="请再次输入密码" name="repassword">
+            </div>
+            <span id="abc">　</span>
+	        <input type="submit" onclick="s()" class="repassword_m_loading" value="确  定">
+		</form>
+    </div>
+
+<script>
+function s(){
+	var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+    	
+        if (fm.old.value == '') {
+            document.getElementById('abc').innerHTML='请输入密码!';
+            fm.old.focus(); //将焦点以至表单字段
+            return false;
+        }
+
+        if (fm.password.value == '') {
+            document.getElementById('abc').innerHTML='请输入新密码!';
+            fm.password.focus(); //将焦点以至表单字段
+            return false;
+        }
+
+        if (fm.repassword.value == '') {
+            document.getElementById('abc').innerHTML='请再次输入密码!';
+            fm.repassword.focus(); //将焦点以至表单字段
+            return false;
+        }
+
+        if(fm.old.value.length < 6 || fm.password.value.length < 6 || fm.repassword.value.length < 6){
+            document.getElementById('abc').innerHTML='密码不能小于6位!';
+            return false;
+        }
+
+        if(fm.password.value != fm.repassword.value){
+            document.getElementById('abc').innerHTML='两次输入的密码不一致!';
+            return false;
+        }
+        
+        return true;
+    };
+}
+
+</script>
+</block>
+
+

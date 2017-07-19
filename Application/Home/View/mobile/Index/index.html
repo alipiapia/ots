@@ -1,0 +1,115 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<!-- 手机轮播图 -->
+<script type="text/javascript" src="__MOBILE__/js/jquery.js"></script>
+<script type="text/javascript" src="__MOBILE__/js/swiper-2.1.min.js"></script>
+<!-- <script type="text/javascript" src="__MOBILE__/js/lazyload.js"></script> -->
+<link rel="stylesheet" type="text/css" href="__MOBILE__/css/mobile_banner.css">
+
+<div id="wrap" class="clearfix overflow mg-auto">    
+    <div class="swiper-container overflow" style="height: 327px;">
+    
+        <div class="swiper-wrapper" id="swiper-wrapper">
+ 
+        	<volist name="Mobilebanner" id="s">
+	            <div class="swiper-slide" style="height: 327px; width: 100%;">
+	                <a href="#"><img src="{$s['pic_id']}" alt="#" title="#" width="100%" height="327px"></a>
+	            </div>
+            </volist>
+        </div> 
+        <div class="pagination"></div> 
+    
+    </div>
+	<script type="text/javascript">        
+         var newSlideSize = function slideSize(){
+            var w = Math.ceil($(".swiper-container").width()/1.96);
+            $(".swiper-container,.swiper-wrapper,.swiper-slide").height(w); 
+         };
+         newSlideSize();
+         $(window).resize(function(){
+           newSlideSize();
+         });
+    </script> 
+</div>
+
+<form class="query" action="" method="post" name="form">
+	<input type="text" class="query_two" name="cert_no" placeholder="授权编码/微信号/手机号/产品编码" />
+	<input name="pro_no" type="hidden" value="" class="pro_no" />
+
+	<div id="query_s">
+	    <input class="query_btn" id="pro_no" onclick="s()" type="button" value="真伪查询">
+	    <input class="query_btn" id="cert_no" onclick="d()" type="button" value="证书查询">
+	</div>
+
+</from>
+
+<script type="text/javascript">
+function s() {
+    
+    $('.pro_no').val($('.query_two').val());
+
+	document.form.action="{:U('Home/Products/get_product')}"; 
+	document.form.submit();
+
+
+}
+function d() {
+
+	document.form.action="{:U('Home/Certs/get_cert')}"; 
+	document.form.submit();
+}
+
+</script>
+<script type="text/javascript">
+window.onload = function(){
+	var mySwiper = new Swiper('.swiper-container',{   
+		pagination: '.pagination',
+		loop:true,
+		autoplay:3000,	
+		paginationClickable: true,
+		onSlideChangeStart: function(){
+		   //回调函数
+		}
+	}); 
+	// cTab("#tab1","#con1");  
+	// cTab("#tab2","#con2");  
+};
+</script>
+<!--     
+<footer>Copyright © 2004-2015 Ynweb All Rights Reserved. <br/><?php echo C('WEB_SITE_ICP'); ?></footer> -->
+
+<style type="text/css">
+.query{
+	font-size: 16px;
+	height: 140px;
+	text-align: center;
+	margin: 60px 0;
+}
+.query .query_two{
+	width: 80%;
+	background: #eee;
+	height: 34%;
+	margin: 20px;
+}
+.query .query_two{
+	border-radius: 6px;
+	text-indent: 1em;
+
+}
+.query .query_btn{
+	margin:0 0 0 10px;	
+	background: #75c01f;
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 7px;
+	letter-spacing:4px;
+}
+
+
+
+
+</style>
+</block>

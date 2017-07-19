@@ -1,0 +1,37 @@
+<extend name="Public/base" />
+
+<block name="body">
+	<!-- 标题栏 -->
+		<div class="tab-wrap">
+		<ul class="tab-nav nav">
+		<li class="current"><a href="{:U('updateProfile')}">完善资料</a></li>
+		<li><a href="{:U('updatenickname')}">修改昵称</a></li>
+		<li ><a href="{:U('updatepassword')}">修改密码</a></li>
+		</ul>
+		<div class="tab-content">
+	<!-- 修改资料表单 -->
+    <form action="{:U('User/submitProfile')}" method="post" class="form-horizontal" autocomplete="off">
+		<div class="form-item">
+			<label class="item-label">地区：<span class="check-tips">（请输入地区名称）</span></label>
+			<div class="controls">
+				<input type="text" name="region" class="text input-large"  value="{$info.region|default=''}" />
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">公司：<span class="check-tips">（请输入公司名称）</span></label>
+			<div class="controls">
+				<input type="text" name="company" class="text input-large" value="{$info.company|default=''}" />
+			</div>
+		</div>
+		<div class="form-item">
+			<button type="submit" class="btn submit-btn ajax-post" target-form="form-horizontal">确 认</button>
+			<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+		</div>
+	</form>
+			</div>
+	</div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+</block>

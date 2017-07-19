@@ -1,0 +1,56 @@
+<extend name="Base/main" />
+
+<block name="body">
+<div class="login_bar" id="login_bar">
+    <div class="registered real">
+        <h2>实名认证</h2>
+        <form action="{:U('Home/User/real_auth')}" method="post" name="form">
+            <input type="text" name="real_name" placeholder="请输入真实姓名" value="{$info.real_name|default=''}" />
+            <input type="text" name="id_no" placeholder="请输入身份证号" value="{$info.id_no|default=''}" />
+            <input type="text" name="wx_id" placeholder="请输入微信号" value="{$info.wx_id|default=''}" />
+            <span id="abc">　</span>
+            <input type="submit" class="submit" name="submit" value="确 定"/>
+        </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script>
+    var oH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    document.getElementsByTagName('body')[0].style.height = oH + 'px';
+    document.getElementById('login_bar').style.height = (oH - 174) + 'px';
+
+    var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+        if (fm.real_name.value == '') {
+            // alert('用户名不得为空!');
+            document.getElementById('abc').innerHTML='真实姓名不能为空!';
+            fm.real_name.focus(); //将焦点以至表单字段
+            return false;
+        }
+
+        if (fm.id_no.value == '') {
+            document.getElementById('abc').innerHTML='身份证号不能为空!';
+            fm.id_no.focus(); //将焦点以至表单字段
+            return false;
+        }
+
+          //手机号验证
+        if(!/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/.test(fm.id_no.value)){
+            document.getElementById('abc').innerHTML='身份证号格式不正确!';
+            fm.id_no.focus();   //将光标移至 表单字段
+            return false;
+        }
+
+        if (fm.wx_id.value == '') {
+            document.getElementById('abc').innerHTML='微信号不能为空!';
+            fm.wx_id.focus(); //将焦点以至表单字段
+            return false;
+        }
+        return true;
+    };
+
+</script>
+</block>

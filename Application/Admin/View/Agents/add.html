@@ -1,0 +1,116 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-title">
+        <h2>{:isset($info['id'])?'编辑':'新增'}代理商</h2>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">用户名<span class="check-tips">（用户名会作为默认的昵称）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="username" value="{$info.username|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">姓名<span class="check-tips">（真实姓名）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="real_name" value="{$info.real_name|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">密码<span class="check-tips">（用户密码不能少于6位）</span></label>
+            <div class="controls">
+                <input type="password" class="text input-large" name="password">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">身份证号码<span class="check-tips">（用户身份证号码）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="id_no" value="{$info.id_no|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">邮箱<span class="check-tips">（用户邮箱，用于找回密码等安全操作）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="email" value="{$info.email|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">手机号<span class="check-tips">（用户手机号码，用于找回密码等安全操作）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="mobile" value="{$info.mobile|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">微信<span class="check-tips">（微信号码）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="wx_id" value="{$info.wx_id|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">公司<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="company" value="{$info.company|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">地区<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="region" value="{$info.region|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">授权品牌<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-middle" name="agent_product" value="{$info.agent_product|default=''}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">代理商状态<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="status">
+                    <option value="0" <eq name="info.status" value="0">selected</eq> >试用</option>
+                    <option value="1" <eq name="info.status" value="1">selected</eq> >正式</option>
+                    <option value="2" <eq name="info.status" value="2">selected</eq> >暂停</option>
+                    <option value="3" <eq name="info.status" value="3">selected</eq> >违规</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">代理商等级<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="agent_grade">
+                    <volist name="Menus" id="menu">
+                        <option value="{$menu.id}" <eq name="info.agent_grade" value="$menu.id"> selected="selected"</eq> >{$menu.title_show}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">上级代理<span class="check-tips">（所属的上级代理）</span></label>
+            <div class="controls">
+                <select name="pid">
+                    <!-- <option value="0">顶级菜单</option> -->
+                    <volist name="PMenus" id="menu">
+                        <option value="{$menu.id}" >{$menu.title_show}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <input type="hidden" name="id" value="{$info.id|default=''}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        Think.setValue("pid", {$info.pid|default = 0});
+        Think.setValue("hide", {$info.hide|default = 0});
+        Think.setValue("is_dev", {$info.is_dev|default = 0});
+        //导航高亮
+        highlight_subnav('{:U('index')}');
+    </script>
+</block>

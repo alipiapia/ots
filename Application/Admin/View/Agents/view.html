@@ -1,0 +1,118 @@
+<extend name="Public/base" />
+
+<block name="body">
+    <!-- 标题栏 -->
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+    </div>
+
+    <div class="columns-mod">
+        <div class="hd cf">
+            <h5>{$info.username}</h5>
+            <div class="title-opt">
+            </div>
+        </div>
+        <div >
+            <div class="sys-info">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <td>{$info.id}</td>
+                    </tr>
+                    <tr>
+                        <th>名称</th>
+                        <td>{$info.username}</td>
+                    </tr>
+                    <tr>
+                        <th>上级</th>
+                        <td>{:get_username($info['pid'])}</td>
+                    </tr>
+                    <tr>
+                        <th>代理等级</th>
+                        <td>{:getTitleByPid($info['agent_grade'])}</td>
+                    </tr>
+                    <tr>
+                        <th>真实姓名</th>
+                        <td>{$info.real_name}</td>
+                    </tr>
+                    <tr>
+                        <th>身份证号码</th>
+                        <td>{$info.id_no}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{$info.email}</td>
+                    </tr>
+                    <tr>
+                        <th>手机号码</th>
+                        <td>{$info.mobile}</td>
+                    </tr>
+                    <tr>
+                        <th>公司</th>
+                        <td>{$info.company}</td>
+                    </tr>
+                    <tr>
+                        <th>地区</th>
+                        <td>{$info.region}</td>
+                    </tr>
+                    <tr>
+                        <th>注册时间</th>
+                        <td>{$info.reg_time|date='Y-m-d H:i:s',###}</td>
+                    </tr>
+                    <tr>
+                        <th>用户状态</th>
+                        <td>
+                            <if condition="$info['status'] eq '0'">试用
+                            <elseif condition="$info['status'] eq '1'"/>正式
+                            <elseif condition="$info['status'] eq '2'"/>已暂停
+                            <elseif condition="$info['status'] eq '3'"/>违规
+                            <else/>未知
+                            </if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>审核状态</th>
+                        <td>
+                            <if condition="$info['is_review'] eq '0'">未审核
+                            <elseif condition="$info['is_review'] eq '1'"/>已审核
+                            <else/>未知
+                            </if>
+                        </td>
+                    </tr>
+                    <eq name="info.is_review" value="1">
+                        <tr>
+                            <th>授权产品名称</th>
+                            <td>{$info.agent_product}</td>
+                        </tr>
+                        <tr>
+                            <th>授权开始日期</th>
+                            <td>{$info.review_begin_time|date='Y-m-d H:i:s',###}</td>
+                        </tr>
+                        <tr>
+                            <th>授权结束日期</th>
+                            <td>{$info.review_end_time|date='Y-m-d H:i:s',###}</td>
+                        </tr>
+                        <tr>
+                            <th>授权证书</th>
+                            <td><img src="__ROOT__{$info.cert_pic}"></td>
+                        </tr>
+                    <else/>
+                    </eq>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="page">
+        {$_page}
+    </div>
+</block>
+
+<block name="script">
+    <script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+
+    <script type="text/javascript"> 
+    //导航高亮
+    highlight_subnav('{:U('User/index')}');
+    </script>
+</block>

@@ -1,0 +1,94 @@
+﻿<extend name="Base/main" />
+
+<block name="head">
+<style type="text/css">
+    html,body{margin:0;padding:0;}
+    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+</style>
+
+</block>
+
+<block name="body">
+
+<div style="width:100%;height:664px; margin-top: -20px; position: relative;" id="dituContent"></div>
+
+<!--<div class="contact_way">-->
+    <!--<ul>-->
+        <!-- <li><i class="fa fa-phone"></i><span>业务电话：<?php echo C('COMPANY_PHONE');?></span></li> -->
+        <!-- <li><i class="fa fa-qq"></i><span>业务 QQ:  <?php echo C('COMPANY_QQ');?></span></li> -->
+        <!-- <li><i class="fa fa-facebook"></i><span>传真： <?php echo C('COMPANY_GRAPH');?></span></li> -->
+        <!-- <li><i class="fa fa-envelope"></i><span>E-mail：<?php echo C('COMPANY_EMAIL');?></span></li> -->
+    <!--</ul>-->
+<!--</div>-->
+<div class="address_bar"><div class="address"><i class="fa fa-map-marker"></i>地址：<?php echo C('COMPANY_ADDRESS');?></div></div>
+
+</block>
+
+<block name="script">
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMapOverlay();//向地图添加覆盖物
+    }
+    function createMap(){
+        map = new BMap.Map("dituContent");
+        map.centerAndZoom(new BMap.Point(116.312529,39.929129),18);
+    }
+    function setMapEvent(){
+        map.enableScrollWheelZoom();
+        map.enableKeyboard();
+        map.enableDragging();
+        map.enableDoubleClickZoom()
+    }
+    function addClickHandler(target,window){
+        target.addEventListener("click",function(){
+            target.openInfoWindow(window);
+        });
+    }
+    function addMapOverlay(){
+        var markers = [
+            {content:"我的备注",title:"<?php echo C('COMPANY_ADDRESS');?>",imageOffset: {width:-46,height:-21},position:{lat:39.929834,lng:116.31075}}
+        ];
+        for(var index = 0; index < markers.length; index++ ){
+            var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+            var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+                imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+            })});
+            var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+            var opts = {
+                width: 200,
+                title: markers[index].title,
+                enableMessage: false
+            };
+            var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+            marker.setLabel(label);
+            addClickHandler(marker,infoWindow);
+            map.addOverlay(marker);
+        };
+        var labels = [
+        ];
+        for(var index = 0; index < labels.length; index++){
+            var opt = { position: new BMap.Point(labels[index].position.lng,labels[index].position.lat )};
+            var label = new BMap.Label(labels[index].content,opt);
+            map.addOverlay(label);
+        };
+    }
+    //向地图添加控件
+    function addMapControl(){
+        var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+        scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+        map.addControl(scaleControl);
+        var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+        map.addControl(navControl);
+        var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+        map.addControl(overviewControl);
+    }
+    var map;
+    initMap();
+</script>
+</block>

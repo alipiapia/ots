@@ -1,0 +1,68 @@
+<extend name="Base/main" />
+
+<block name="body">
+    <div id="agents">
+        <p>代理商列表</p>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>操作</th>
+            </tr>
+            <volist name="list" id="vo">
+                <tr>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.username}</td>
+                    <td>
+                        <a href="{:U('Home/System/a_view',array('id'=>$vo['id']))}">查看</a>
+                        <if condition="$vo.is_review eq 0">
+                            <a href="{:U('Home/System/a_index',array('id'=>$vo['id']))}">审核</a>
+                            <else/>
+                        </if>
+                    </td>
+                </tr>
+            </volist>
+        </table>
+        <div id="page">{$page}</div>
+    </div>
+<style type="text/css">
+#agents{
+    width: 100%;
+}
+#agents p{
+    text-align: center;
+    background: #383838;
+    color:white;
+    font-weight: normal;
+    height:30px;
+    line-height:30px;
+    display: block;
+}
+#agents table{
+    width:100%;
+    /*border:1px solid #1c8a8c;*/
+}
+#agents table th{
+    font-weight:normal;
+    border:1px solid #1c8a8c;
+    padding: 9px;
+}
+#agents table tr td{
+    width:33%;
+    padding:9px;
+    border:1px solid #1c8a8c;
+}
+#agents table a{
+    color:blue;
+}
+#agents span{
+    background: #383838;
+    color:white;
+}
+#agents #page{
+    padding:10px;
+    text-align: center;
+}
+</style>
+</block>
+

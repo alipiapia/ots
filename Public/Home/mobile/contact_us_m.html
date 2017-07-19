@@ -1,0 +1,174 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>女神泡泡-手机版联系我们</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="i/favicon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileImage" content="i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="css/amazeui.min.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+    <!--头部开始-->
+    <header data-am-widget="header" class="am-header am-header-default">
+          <div class="am-header-left am-header-nav">
+              <a href="javascript:history.go(-1)" data-am-offcanvas>
+                    <i class="am-header-icon am-icon-angle-left"></i>
+              </a>
+          </div>
+          <h1 class="am-header-title">
+              <a href="#title-link" class="">
+                关于我们
+              </a>
+          </h1>
+          <div class="am-header-right am-header-nav">
+              <a href="#doc-oc-demo2" data-am-offcanvas>
+                    <i class="am-header-icon am-icon-user"></i>
+              </a>
+          </div>
+    </header>
+    <!--头部结束-->
+
+
+    <!--中心内容开始-->
+    <style type="text/css">
+        html,body{margin:0;padding:0;}
+        .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+        .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+    <div style="width:100%;height:180px;" id="map"></div>
+    <script type="text/javascript">
+        //创建和初始化地图函数：
+        function initMap(){
+            createMap();//创建地图
+            setMapEvent();//设置地图事件
+            addMapControl();//向地图添加控件
+            addMapOverlay();//向地图添加覆盖物
+        }
+        function createMap(){
+            map = new BMap.Map("map");
+            map.centerAndZoom(new BMap.Point(116.310876,39.928755),16);
+        }
+        function setMapEvent(){
+            map.enableScrollWheelZoom();
+            map.enableKeyboard();
+            map.enableDragging();
+            map.enableDoubleClickZoom()
+        }
+        function addClickHandler(target,window){
+            target.addEventListener("click",function(){
+                target.openInfoWindow(window);
+            });
+        }
+        function addMapOverlay(){
+            var markers = [
+                {content:"我的备注",title:"北京市海淀区阜成路28号航医大厦三层（308）",imageOffset: {width:-46,height:-21},position:{lat:39.929668,lng:116.310948}}
+            ];
+            for(var index = 0; index < markers.length; index++ ){
+                var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+                var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+                    imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+                })});
+                var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+                var opts = {
+                    width: 200,
+                    title: markers[index].title,
+                    enableMessage: false
+                };
+                var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+                marker.setLabel(label);
+                addClickHandler(marker,infoWindow);
+                map.addOverlay(marker);
+            };
+        }
+        //向地图添加控件
+        function addMapControl(){
+            var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+            scaleControl.setUnit(BMAP_UNIT_METRIC);
+            map.addControl(scaleControl);
+            var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:1});
+            map.addControl(navControl);
+            var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:false});
+            map.addControl(overviewControl);
+        }
+        var map;
+        initMap();
+    </script>
+
+    <div class="m_contact_way">
+        <ul>
+            <li><i class="am-icon-phone"></i><span>业务电话：0871-63935390</span></li>
+            <li><i class="am-icon-qq"></i><span>业务 QQ:  12043006</span></li>
+            <li><i class="am-icon-facebook"></i><span>传真： 0871-68217962</span></li>
+            <li><i class="am-icon-envelope"></i><span>E-mail：info@ynweb.com</span></li>
+        </ul>
+    </div>
+    <div class="m_address">北京市海淀区阜成路28号航医大厦三层（308）</div>
+
+
+    <!--中心内容结束-->
+
+
+    <!--底部导航开始-->
+    <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default " id="">
+        <ul class="am-navbar-nav am-cf am-avg-sm-4">
+            <li>
+              <a href="" class="">
+                    <span class="am-icon-home"></span>
+                  <span class="am-navbar-label">首页</span>
+              </a>
+            </li>
+            <li data-am-navbar-share>
+              <a href="" class="">
+                    <span class="am-icon-product-hunt"></span>
+                  <span class="am-navbar-label">产品</span>
+              </a>
+            </li>
+            <li data-am-navbar-qrcode>
+              <a href="tel:123456789" class="">
+                    <span class="am-icon-external-link"></span>
+                  <span class="am-navbar-label">联系</span>
+              </a>
+            </li>
+            <li >
+              <a href="" class="">
+                    <span class="am-icon-newspaper-o"></span>
+                  <span class="am-navbar-label">新闻</span>
+              </a>
+            </li>
+            <li >
+              <a href="" class="">
+                    <span class="am-icon-user"></span>
+                  <span class="am-navbar-label">关于</span>
+              </a>
+            </li>
+        </ul>
+      </div>
+    <!--底部导航开始-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="js/amazeui.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<extend name="Base/main" />
+
+<block name="body">
+<div id="rep_contents">
+	<div class="rep_name" data-am-widget="navbar">
+	    <span>{$data.title}</span>
+	</div>
+	<div id="rep_oop_time">
+		<p>举报对象：{$data.agent_name}</p>
+		<p>举报时间：{$data['create_time']|date='Y-m-d H:i:s',###}</p>
+	</div>
+
+	<div class="content">{$data.contents}</div>
+</div>
+</block>

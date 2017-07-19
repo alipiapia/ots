@@ -1,0 +1,72 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+    </div>
+        <form action="{:U('edit')}" method="post" class="form-horizontal">
+            <input type="hidden" name="id" value="{$data.id}">
+            <div class="form-item">
+                <label class="item-label">标题<span class="check-tips"></span></label>
+                <div class="controls">
+                    <input type="text" class="text input-large" name="title" value="{$data.title}" >
+                </div>
+            </div>
+
+            <!-- 新闻内容 -->
+            <label class="item-label">内容<span class="check-tips"></span></label>
+            <div class="controls">
+                <label class="textarea">
+                <div class="ke-statusbar">
+                    <span class="ke-inline-block ke-statusbar-center-icon"></span>
+                    <span class="ke-inline-block ke-statusbar-right-icon" style="visibility: hidden;"></span>
+                </div>
+                <textarea name="content" style="display: none;">{$data.content}</textarea>
+                <link rel="stylesheet" href="/ot/Public/static/kindeditor/default/default.css">
+                <script charset="utf-8" src="/ot/Public/static/kindeditor/kindeditor-min.js"></script>
+                <script charset="utf-8" src="/ot/Public/static/kindeditor/zh_CN.js"></script>
+                <script type="text/javascript">
+                    var editor;
+                    KindEditor.ready(function(K) {
+                        editor = K.create('textarea[name="content"]', {
+                            allowFileManager : false,
+                            themesPath: K.basePath,
+                            width: '100%',
+                            height: '500px',
+                            resizeType: 1,
+                            pasteType : 2,
+                            urlType : 'absolute',
+                            fileManagerJson : '/ot/index.php?s=/Admin/Article/fileManagerJson.html',
+                            //uploadJson : '/ot/index.php?s=/Admin/Article/uploadJson.html' }
+                            uploadJson : '/ot/index.php?s=/Admin/Addons/execute/_addons/EditorForAdmin/_controller/Upload/_action/ke_upimg.html'
+                        });
+                    });
+
+                    $(function(){
+                        //传统表单提交同步
+                        $('textarea[name="content"]').closest('form').submit(function(){
+                            editor.sync();
+                        });
+                        //ajax提交之前同步
+                        $('button[type="submit"],#submit,.ajax-post').click(function(){
+                            editor.sync();
+                        });
+                    })
+                </script>
+                </label>                    
+            </div>
+            <div class="form-item">
+                <button class="btn submit-btn" id="submit"  type="submit" target-form="form-horizontal">确 定</button>
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+            </div>
+        </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        Think.setValue("type", {$info.type|default=0});
+        Think.setValue("group", {$info.group|default=0});
+        //导航高亮
+        highlight_subnav('{:U('Config/index')}');
+    </script>
+</block>

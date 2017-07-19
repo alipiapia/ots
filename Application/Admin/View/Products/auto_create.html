@@ -1,0 +1,53 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+    </div>
+    <form action="{:U('add')}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">产品名称<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="pro_name" >
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">产品品牌<span class="check-tips">（用于区别产品）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="pro_brand">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">产品数量<span class="check-tips">（用于添加产品）</span></label>
+            <select name="pro_num">
+                    <option value="0">--请选择数量--</option>
+                    <option value="1">1</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+            </select>
+        </div>
+        <div class="form-item">
+            <label class="item-label">产品介绍<span class="check-tips">（用于介绍产品）</span></label>
+            <label class="textarea">
+            <textarea name="pro_content">{$data.pro_content}</textarea>
+            {:hook('adminArticleEdit', array('name'=>'pro_content','value'=>$data['pro_content']))}
+            </label>
+        </div>
+        <div class="form-item">
+            <button class="btn submit-btn" id="submit"  type="submit" target-form="form-horizontal">确 定</button>
+
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        Think.setValue("type", {$info.type|default=0});
+        Think.setValue("group", {$info.group|default=0});
+        //导航高亮
+        highlight_subnav('{:U('Config/index')}');
+    </script>
+</block>

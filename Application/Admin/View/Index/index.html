@@ -1,0 +1,49 @@
+<extend name="Public/base"/>
+
+<block name="sidebar"></block>
+
+<block name="style">
+    <style>
+        body{padding: 0}
+    </style>
+</block>
+
+<block name="body">
+    <!-- 主体 -->
+    <div id="indexMain" class="index-main">
+       <!-- 插件块 --><!-- <div class="span{$addons_config.width}"> -->
+            <div class="center">
+                <div class="columns-mod">
+                    <div class="hd cf">
+                        <h5>{$addons_config.title}</h5>
+                        <div class="title-opt">
+                        </div>
+                    </div>
+                    <div class="bd">
+                        <div class="sys-info">
+                            <div style="margin-top:80px;">
+                                <h2 align="center">欢迎回来，<?php echo get_username(UID);?>!</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+    /* 插件块关闭操作 */
+    $(".title-opt .wm-slide").each(function(){
+        $(this).click(function(){
+            $(this).closest(".columns-mod").find(".bd").toggle();
+            $(this).find("i").toggleClass("mod-up");
+        });
+    })
+    $(function(){
+        // $('#main').attr({'id': 'indexMain','class': 'index-main'});
+        $('.copyright').html('<div class="copyright"> ©2013 <a href="" target="_blank"></a> 版权所有</div>');
+        $('.sidebar').remove();
+    })
+</script>
+</block>

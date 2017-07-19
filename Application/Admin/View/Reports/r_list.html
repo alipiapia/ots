@@ -1,0 +1,121 @@
+<extend name="Public/base" />
+
+<block name="body">
+	<!-- 标题栏 -->
+	<div class="main-title">
+		<h2>{$meta_title}</h2>
+	</div>
+	<div class="cf">
+		<div class="fl">
+            <a class="btn" href="{:U('Reports/add')}">新 增</a>
+			<if condition="UID eq 1" >
+            	<button class="btn ajax-post confirm" url="{:U('del')}" target-form="ids">删 除</button>
+            </if>
+        </div>
+
+        <!-- 高级搜索 -->
+		<div class="search-form fr cf">
+			<div class="sleft">
+				<input type="text" name="keyword" class="search-input" value="{:I('keyword')}" placeholder="请输入标题/内容/ID">
+				<a class="sch-btn" href="javascript:;" id="search" url="{:U('r_list')}"><i class="btn-search"></i></a>
+			</div>
+		</div>
+    </div>
+    <!-- 数据列表 -->
+    <div class="data-table table-striped">
+	<table class="">
+    <thead>
+        <tr>
+			<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+			<th class="">ID</th>
+			<th class="">标题</th>
+			<th class="">举报对象</th>
+			<th class="">举报内容</th>
+			<th class="">举报人</th>
+			<!-- <th class="">举报人ip</th> -->
+			<th class="">举报时间</th>
+			<th class="">审核状态</th>
+			<th class="">操作</th>
+		</tr>
+    </thead>
+    <tbody>
+		<notempty name="data">
+		<volist name="data" id="vo">
+		<tr>
+            <td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+			<td>{$vo.id} </td>
+			<td>{$vo.title}</td>
+			<td>{$vo.agent_name}</td>
+			<td>{$vo.contents|msubstr=0,6,'utf-8',true}</td>
+			<td>{:get_username($vo['rep_admin'])}</td>
+			<!-- <td>{$vo.rep_ip}</td> -->
+			<td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+			<td>
+				<eq name="vo.is_review" value="1">已审核
+				<else />未审核
+				</eq>
+			</td>
+			<td>
+				<!-- <a href="{:U('Admin/News/del',array('id'=>$vo['id']))}" class="confirm ajax-get">删除</a> -->
+				<a href="{:U('Admin/Reports/view',array('id'=>$vo['id']))}" class="btn">查 看</a>
+				<eq name="vo.is_review" value="0" >
+				<if condition="UID eq 1" >
+					<a href="{:U('Admin/Reports/review',array('id'=>$vo['id']))}" class="btn">审 核</a>
+				<!-- <input type="button" class="btn" onclick="confirm_rev('{:U('Admin/Reports/review',array('id'=>$vo['id']))}}')" value="审 核"> -->
+				<else />
+					<a href="{:U('Admin/Reports/edit',array('id'=>$vo['id']))}" class="btn">编 辑</a>
+				</if>
+				</eq>
+				<!-- <input type="button" class="btn" onclick="confirm_del('{:U('Admin/Reports/del',array('id'=>$vo['id']))}}')" value="删 除"> -->
+            </td>
+		</tr>
+		</volist>
+		<else/>
+		<td colspan="9" class="text-center"> aOh! 暂时还没有内容! </td>
+		</notempty>
+	</tbody>
+    </table>
+	</div>
+    <div class="page">
+        {$_page}
+    </div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+
+	<script type="text/javascript">
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+        var query  = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
+	//回车搜索
+	$(".search-input").keyup(function(e){
+		if(e.keyCode === 13){
+			$("#search").click();
+			return false;
+		}
+	});
+
+	//删除提示
+	function confirm_rev(a){
+		if(confirm("确定要执行该操作吗？")){
+			self.location = a;
+		}else{
+			self.location.reload();
+		}	
+	}
+
+    //导航高亮
+    highlight_subnav('{:U('User/index')}');
+	</script>
+</block>

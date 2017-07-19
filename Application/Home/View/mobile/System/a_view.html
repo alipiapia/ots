@@ -1,0 +1,104 @@
+<extend name="Base/main" />
+
+<block name="body">
+    <div id="agents">
+        <span>查看</span>
+            <table>
+                <tr>
+                    <td>用户名</td>
+                    <td>{$list.username|default=''}</td>
+                </tr>
+                <tr>
+                    <td>姓名</td>
+                    <td>{$list.real_name|default=''}</td>
+                </tr>
+                <tr>
+                    <td>身份证号码</td>
+                    <td>{$list.id_no|default=''}</td>
+                </tr>
+                <tr>
+                    <td>手机号</td>
+                    <td>{$list.mobile|default=''}</td>
+                </tr>
+                <tr>
+                    <td>邮箱</td>
+                    <td>{$list.email|default=''}</td>
+                </tr>
+                <tr>
+                    <td>微信</td>
+                    <td>{$list.wx_id|default=''}</td>
+                </tr>
+                <tr>
+                    <td>地区</td>
+                    <td>{$list.region|default=''}</td>
+                </tr>
+                <tr>
+                    <td>公司</td>
+                    <td>{$list.company|default=''}</td>
+                </tr>
+                
+                <eq name="list.is_review" value="1">
+
+                    <tr>
+                        <td>授权开始时间</td>
+                        <td>{$list['review_begin_time'] ? $list['review_begin_time'] : time()|time_format}</td>
+                    </tr>
+                    <tr>
+                        <td>授权到期时间</td>
+                        <td>{$list['review_end_time'] ? $list['review_end_time'] : time()|time_format}</td>
+                    </tr>
+
+                </eq>
+
+                <tr>
+                    <td>授权品牌</td>
+                    <td>{$list.agent_product|default=''}</td>
+                </tr>
+            </table>
+            <!--{$page}-->
+            <div id="re">
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+            </div>
+    </div>
+<style type="text/css">
+#agents{
+    width: 100%;
+}
+#agents span{
+    text-align: center;
+    background: #383838;
+    color:white;
+    font-weight: normal;
+    height:30px;
+    line-height:30px;
+    display: block;
+}
+#agents table{
+    width:100%;
+    /*border:1px solid #1c8a8c;*/
+}
+#agents #re{
+    width: 80%;
+    text-align: center;
+    margin:0 auto;
+}
+#agents button{
+    width: 80%;
+    border:0;
+    width: 140px;
+    background: #75C01F;
+    color:white;
+    border-radius: 4px;
+    height:34px;
+    margin:10px;
+}
+#agents table tr td{
+    padding:9px;
+    border:1px solid #1c8a8c;
+}
+#agents table a{
+    color:blue;
+}
+</style>
+</block>
+

@@ -1,0 +1,96 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<!--中心内容开始-->
+<div class="m_registered_bar">
+    <div class="m_login_tx"><img src="__MOBILE__/images/login_3.jpg" /></div>
+    <form action="{:U('Home/User/register')}" method="post">
+	    <div class="form_input">
+	    	<input type="text" name="username" placeholder="手机号/用户名" />
+	    </div>
+	    <div class="form_input">
+	    	<input type="password" name="password" placeholder="设置密码" />
+	    </div>
+	    <div class="form_input">
+	    	<input type="password" name="repassword" placeholder="确认密码" />
+	    </div>
+	    <div class="form_input">
+	    	<input type="text" name="mobile" placeholder="手机号+86" />
+	    </div>
+	    <div class="form_input">
+	    	<input type="text" name="email" placeholder="邮箱" />
+	    </div>
+		<div class="form_input">
+	    	<input type="text" name="xcode" placeholder="请输入邀请码" />
+	    </div>
+
+<!-- 	    <div class="form_input">
+	    	<input class="m_inp01" name="m_code" type="text" placeholder="手机验证码" /><button>获取验证码</button>
+	    </div> -->
+	    <span id="abc">　</span>
+	    <input type="submit" onclick="ss()" class="m_loading_zz" value="立即注册">
+    </form>
+
+</div>
+<!--中心内容结束-->
+
+<script>
+function ss(){
+	 var fm=document.getElementsByTagName('form')[0];
+
+    	fm.onsubmit=function(){
+        if (fm.username.value == '') {
+            document.getElementById('abc').innerHTML='用户名不得为空!';
+            fm.username.focus(); //将焦点以至表单字段
+            return false;
+        }
+        
+        
+        //密码验证
+        if(fm.password.value.length < 6){
+            document.getElementById('abc').innerHTML='密码不得小于6位!';
+            fm.password.value = '';//清空 
+            fm.password.focus();   //将光标移至 表单字段
+            return false;
+        }
+        
+        //密码确认验证
+        if(fm.password.value != fm.repassword.value){
+            document.getElementById('abc').innerHTML='密码和密码确认必须一致!';
+            fm.repassword.value = '';//清空  
+            fm.repassword.focus();   //将光标移至 表单字段
+            return false;
+        }
+
+        //手机号验证
+        if(!/^1[34578]\d{9}$/.test(fm.mobile.value)){
+            document.getElementById('abc').innerHTML='手机号格式不正确!';
+            fm.mobile.value = '';//清空    
+            fm.mobile.focus();   //将光标移至 表单字段
+            return false;
+        }
+
+
+        //邮箱验证
+        if(!/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/.test(fm.email.value)){
+            // alert('邮件格式不正确!');
+            document.getElementById('abc').innerHTML='邮件格式不正确!';
+            fm.email.value = '';//清空    
+            fm.email.focus();   //将光标移至 表单字段
+            return false;
+        }
+
+        //邀请码验证
+        if(fm.xcode.value == ''){
+            document.getElementById('abc').innerHTML='邀请码不能为空!';
+            fm.xcode.value = '';//清空  
+            fm.xcode.focus();   //将光标移至 表单字段
+            return false;
+        }
+        return true;
+    };
+}
+</script>
+
+</block>

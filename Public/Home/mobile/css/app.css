@@ -1,0 +1,233 @@
+
+.am-header-default {background: #75C01F;}
+input{ outline: none; border:none;}
+i,em{ font-style: normal;}
+ul,ol{ list-style: none;padding:0;margin:0;}
+a{ color: #333; }
+.ibanner img {width: 100%; height:auto;}
+.a-panel1 {padding:3px 0;}
+.aTitle {text-align: center; margin-top: 10px;}
+.am-slider-default .am-control-nav li a.am-active {background-color:#75C01F;}
+.joinBox {margin-top: 45px; padding:10px 0; background: #2D2C32;}
+.joinBox h2,.joinBox p {color:#fff;}
+.joinBox h2 {text-align: center;}
+.joinBox p {text-indent: 2em;}
+.joinBox a {font-size: 30px; font-weight: bold; display: block; width: 250px; height:40px; line-height: 1; border:1px solid #75C01F; text-align: center; color:#75C01F; margin:20px auto 0;}
+.cProfile {margin-top: 20px;}
+.cProfile h2 {text-align: center;}
+.cProfileImg {width: 80%;margin:0 auto;}
+.cProfile img {width: 100%; height: auto;}
+.cProfile a {font-size: 30px; font-weight: bold; display: block; width: 250px; height:40px; line-height: 1; border:1px solid #75C01F; text-align: center; color:#75C01F; margin:20px auto 0;}
+
+footer {background: #2D2C32; text-align: center; margin: 20px 0 -10px 0; color:#ccc;padding:15px 0;}
+.am-navbar {line-height: 1;}
+.am-navbar-default .am-navbar-nav {background-color:#75C01F;}
+
+.textI2 {text-indent: 2em;}
+
+/*登录注册css*/
+.m_login_bar{ width: 100%;}
+.m_login_tx{ width: 120px; height: 120px; margin: 48px auto; border-radius: 50%; background: #f8f8f8; border:1px solid #ececec;padding:3px;}
+.m_login_tx img{ width:100%; border-radius: 50%;height:100%;}
+
+
+/*用户名密码*/
+.m_login_bar .form_input{ margin: 0 auto; width: 80%; height:48px; margin-bottom: 10px;}
+.m_login_bar .form_input input{border-radius: 7px; background: #eee;width: 100%; height: 48px;line-height: 48px;text-indent: 1em;}
+
+
+
+/*忘记密码*/
+
+.m_prompt{
+	height: 58px;
+	width: 80%;
+	margin: 0 auto;
+}
+.m_prompt a{ float: right; font-size: 14px;margin:10px 0;}
+.m_prompt a:hover{ color: #75C01F;}
+.m_prompt span{
+	margin:10px 0;
+	font-size: 15px;
+	color: red;
+}
+
+/*登陆*/
+.m_loading{ background: #75C01F;width: 80%;margin: 0 auto; height: 48px; border-radius: 5px; display: block; color: #fff;  font-size: 18px; line-height: 48px; text-align: center;}
+.m_loading:hover{ color: #fff;}
+
+
+
+
+.m_registered_bar .form_input{ margin: 0 auto; width: 80%; height:48px; margin-bottom: 10px;}
+.m_registered_bar .form_input input{border-radius: 7px; background: #eee;width: 100%; height: 48px;line-height: 48px;text-indent: 1em;}
+.m_registered_bar .form_input .m_inp01{ width:70%; float: left;}
+.m_registered_bar .form_input button{ width: 30%; height: 56px; background: #cecece; border:none; color: #fff;}
+.m_registered_bar span{
+	width: 80%;
+	font-size: 15px;
+	color: red;
+}
+.m_registered_bar #abc{
+	padding:0 9%;
+}
+
+/*注册*/
+.m_loading_zz{
+	background: #75C01F;width: 80%;margin: 4px auto; height: 48px; border-radius: 5px; display: block; color: #fff;  font-size: 18px; line-height: 48px; text-align: center;
+}
+
+/*完善资料*/
+.means{
+	margin: 100px 0 0 0;
+}
+.means .form_input{ margin: 0 auto; width: 80%; height:48px; margin-bottom: 10px;}
+.means .form_input input{border-radius: 7px; background: #eee;width: 100%; height: 48px;line-height: 48px;text-indent: 1em;}
+.means span{
+	width: 80%;
+	font-size: 15px;
+	color: red;
+}
+.means #abc{
+	padding:0 10%;
+}
+.means_m_loading{
+	background: #75C01F;width: 80%;margin: 0 auto; height: 48px; border-radius: 5px; display: block; color: #fff;  font-size: 18px; line-height: 48px; text-align: center;
+}
+.m_loading:hover{ color: #fff;}
+
+/*密码修改*/
+.repassword{
+	margin: 100px 0 0 0;
+}
+.repassword .form_input{ margin: 0 auto; width: 80%; height:48px; margin-bottom: 10px;}
+.repassword .form_input input{border-radius: 7px; background: #eee;width: 100%; height: 48px;line-height: 48px;text-indent: 1em;}
+.repassword span{
+	width: 80%;
+	font-size: 15px;
+	color: red;
+}
+.repassword #abc{
+	padding:0 10%;
+}
+.repassword_m_loading{
+	background: #75C01F;width: 80%;margin: 0 auto; height: 48px; border-radius: 5px; display: block; color: #fff;  font-size: 18px; line-height: 48px; text-align: center;
+}
+
+/*实名认证*/
+.reals{
+	margin: 100px 0 0 0;
+}
+.reals .form_input{ margin: 0 auto; width: 80%; height:48px; margin-bottom: 10px;}
+.reals .form_input input{border-radius: 7px; background: #eee;width: 100%; height: 48px;line-height: 48px;text-indent: 1em;}
+.reals span{
+	width: 80%;
+	font-size: 15px;
+	color: red;
+}
+.reals #abc{
+	padding:0 10%;
+}
+.reals_m_loading{
+	background: #75C01F;width: 80%;margin: 0 auto; height: 48px; border-radius: 5px; display: block; color: #fff;  font-size: 18px; line-height: 48px; text-align: center;
+}
+
+
+
+/*联系我们css*/
+.m_contact_way{ width: 100%;padding:0 3%;}
+.m_contact_way ul li{ height:48px;margin: 20px 0 5px 0;}
+.m_contact_way ul li i{float: left; display: block; width: 24px; height: 24px; background: #75C01F; text-align: center; line-height:24px; font-size:16px; color: #fff;}
+.m_contact_way ul li span{margin: 0 10px; height: 18px; line-height: 18px;}
+.m_address{ height: 40px; background: #131313; color: #fff; line-height: 40px; text-align: center;}
+
+
+
+
+/*新闻中心css*/
+.tabs{ height: 38px; line-height: 38px; background: #131313;}
+.tabs li{ width: 25%; background: #131313; float: left; text-align: center;}
+.tabs li a{ display: block; color: #fff;}
+.m_new_list{ padding:10px 3%;}
+.m_new_list dl{ overflow: hidden; padding-bottom: 10px; border-bottom:1px solid #cecece;}
+.m_new_list dl dt{ width: 30%; height: 100px; float: left;}
+.m_new_list dl .m_video{ width: 30%; height: 100px; background: url("../images/m_new_3.png") no-repeat;}
+.m_new_list dl .m_video i{ color: #fff; font-size: 30px; text-align: center; line-height: 100px; margin: 0 auto; display: block;}
+.m_new_list dl dt img{  width: 100%; max-height: 100px;}
+.m_new_list dl dd{ width: 70%;  float: left; margin-top: 0;padding-left:1%;}
+.m_new_list dl dd a:hover{ color: #222;}
+.m_new_list dl dd h3{ font-weight: normal;  color: #222; margin-bottom: 0;}
+.m_new_list dl dd span{ font-size: 14px;}
+.m_new_list dl dd p{ margin: 0;}
+
+.m_new_article h2{ text-align: center; line-height:50px; font-size: 20px; font-weight: 500; margin-bottom: 0;}
+.m_new_article p{margin-top: 0;}
+.m_new_article p small{ width: 50%; text-align: center; display: block; float: left; line-height: 30px;}
+.m_new_article span{ text-indent: 2em; display: inline-block; line-height: 26px; padding:0 3%;}
+.m_video_article{ width: 100%; background: url("../images/m_new_4.png") no-repeat; height:200px; margin-bottom: 20px; }
+.m_video_article i{ color: #fff; font-size: 60px; display: block; text-align: center; line-height:200px;}
+
+/*产品中心css*/
+.m_pro_list{padding:0 3%;}
+.m_pro_list dl{ border-bottom: 1px solid #cecece; overflow: hidden;padding-bottom:10px;}
+.m_pro_list dl dt{ width:30%; height: auto; float: left;}
+.m_pro_list dl dt img{padding: 3px; width: 100%;  height: auto;}
+.m_pro_list dl a:hover{ color:#222;}
+.m_pro_list dl dd{ float: left; width: 70%;}
+.m_pro_list dl dd p{ margin-bottom: 10px;}
+.m_pro_list dl dd span{ font-size: 14px;}
+
+.pro_name{ padding:10px 3%; overflow: hidden;}
+.pro_name span{ width: 80%; float: left;}
+.pro_name a{ display:block; width:18%; height: 50px; border-left:1px solid #999; float: left; margin-left: 2%;}
+.pro_name a img{ width:55%; height: auto; margin-left: 25%; display: inline-block;}
+
+.pro_tit{ height: 40px; background: #222;}
+.pro_tit p{ width: 40%;background:#75C01F; height: 40px; text-indent: 1em; line-height: 40px; color: #fff;}
+.attribute{ margin: 20px 0;}
+.attribute tr td{ width: 30%; line-height: 40px; text-indent: 1em;}
+.attribute tr th{ font-weight:500; color: #222;}
+
+.content img{
+	width: 100%;
+}
+
+/*举报列表详情*/
+#rep_contents{
+	width: 100%;
+}
+#rep_contents .rep_name{
+	/*border: 1px solid red;*/
+	background: #131313;
+	line-height: 40px;
+	color:white;
+	/*font-weight: bold;*/
+	text-align: center;
+	font-size: 16px;
+}
+#rep_contents #rep_oop_time{
+	border-bottom: 1px solid #cecece;
+}
+#rep_contents p{
+	margin: 4px 0;
+	/*border: 1px solid green;*/
+}
+
+
+/*举报列表*/
+.m_rep_list{
+	/*border:1px solid red;*/
+	width: 80%;
+	margin: 40px auto;
+}
+.m_rep_list dl{ border-bottom: 1px solid #cecece; overflow: hidden;padding-bottom:10px;}
+.m_rep_list dl a:hover{ color:#222;}
+.m_rep_list dl dd p{ margin-bottom: 10px;}
+.m_rep_list dl dd span{ font-size: 14px;}
+
+
+
+
+
+
+

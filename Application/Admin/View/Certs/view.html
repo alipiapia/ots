@@ -1,0 +1,21 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+        <h4>{$info.username}</h4>
+    </div>
+    <div>
+        <img src="__ROOT__{$info.pic_url}">
+    </div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        Think.setValue("type", {$info.type|default=0});
+        Think.setValue("group", {$info.group|default=0});
+        //导航高亮
+        highlight_subnav('{:U('Config/index')}');
+    </script>
+</block>
+

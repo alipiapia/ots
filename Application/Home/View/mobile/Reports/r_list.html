@@ -1,0 +1,18 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<div class="m_rep_list">
+    <volist name="data" id="arr">
+        <dl>
+            <a href="{:U('Home/Reports/detail',array('id'=>$arr['id']))}">
+                <dd>
+                    <p>{$arr.title}</p>
+                </dd>
+            </a>
+        </dl>
+    </volist>
+    {$page}
+</div>
+</block>
+

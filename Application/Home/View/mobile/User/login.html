@@ -1,0 +1,66 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+    <!--中心内容开始-->
+    <div class="m_login_bar">
+        <div class="m_login_tx"><img src="__MOBILE__/images/login_3.jpg" /></div>
+		<form method="post" action="{:U('Home/User/login')}" name="form">
+	        <div class="form_input">
+	        	<input type="text" name="username" placeholder="请输入用户名" />
+	        </div>
+	        <div class="form_input">
+	        	<input type="password" name="password" placeholder="请输入密码" />
+	        </div>
+	        <div class="m_prompt">
+	        	<span id="abc">　</span><a href="{:U('Home/User/forget_pass')}" class="fr">忘记密码？</a>
+	        </div>
+            
+            <!-- <button type="submit" style="border:none;" class="m_loading">立即登录</button> -->
+	        <!-- <input type="submit" name="" class="m_loading" value="立即登录" /> -->
+	        <!-- <button type="submit" class="m_loading">立即登录</button> -->
+	        <input type="submit" onclick="s()" class="m_loading" value="立即登录">
+		</form>
+    </div>
+    <!--中心内容结束-->
+
+<script>
+function s(){
+	 var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+    	
+        if (fm.username.value == '') {
+            document.getElementById('abc').innerHTML='用户名不得为空!';
+            fm.username.focus(); //将焦点以至表单字段
+            return false;
+        }
+        
+        if(fm.password.value.length < 6){
+            document.getElementById('abc').innerHTML='密码不得小于6位!';
+            fm.password.value = '';//清空 
+            fm.password.focus();   //将光标移至 表单字段
+            return false;
+        }
+        return true;
+    };
+}
+   
+
+
+
+    /*$(function(){
+     $(window).resize(function(){
+     var oH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+     $('body').height(oH + 'px');
+     $('#login_bar').height((oH - 170) + 'px');
+     });
+     });*/
+</script>
+</block>
+
+
+
+
+
+

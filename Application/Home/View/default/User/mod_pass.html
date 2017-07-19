@@ -1,0 +1,54 @@
+<extend name="Base/main" />
+
+<block name="body">
+<div class="login_bar" id="login_bar">
+    <div class="registered real">
+        <h2>重置密码</h2>
+        <form action="{:U('Home/User/mod_pass')}" method="post" name="form">
+            <input type="hidden" name="uid" value="{$member_bak.uid}" />
+            <input type="hidden" name="v_code" value="{$member_bak.v_code}" />
+            <input type="password" name="password" placeholder="请输入密码" />
+            <input type="password" name="repassword" placeholder="确认新密码" />
+            <span id="abc">　</span>
+            <input type="submit" class="submit" name="submit" value="确 定"/>
+        </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script>
+    var oH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    document.getElementsByTagName('body')[0].style.height = oH + 'px';
+    document.getElementById('login_bar').style.height = (oH - 174) + 'px';
+
+    var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+        if(fm.password.value == ''){
+            document.getElementById('abc').innerHTML='请输入密码!';
+            // fm.email.value = '';//清空    
+            fm.password.focus();   //将光标移至 表单字段
+            return false;
+        }
+        if(fm.repassword.value == ''){
+            document.getElementById('abc').innerHTML='请确认密码!';
+            // fm.email.value = '';//清空    
+            fm.repassword.focus();   //将光标移至 表单字段
+            return false;
+        }
+        if(fm.password.value.length < 6 || fm.repassword.value.length < 6){
+            document.getElementById('abc').innerHTML='密码不能小于6位!';
+            return false;
+        }
+        if(fm.password.value != fm.repassword.value){
+            document.getElementById('abc').innerHTML='两次输入的密码不一致!';
+            // fm.email.value = '';//清空    
+            fm.repassword.focus();   //将光标移至 表单字段
+            return false;
+        }
+        return true;
+    };
+
+</script>
+</block>

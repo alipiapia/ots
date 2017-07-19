@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+
+
+/* 滑动焦点图 */
+
+.swiper-container {height:auto; width:100%;text-align:center;margin:0 auto;position:relative; overflow:hidden; z-index:5; background:#F8F8F8;}
+
+.swiper-wrapper {position: relative;z-index:10;}
+
+.swiper-slide {position:relative;text-align:center; float:left;}
+
+.swiper-slide a{ position:relative; width:100%; height:100%; display:block; overflow:hidden;}
+
+.swiper-slide img{ max-height:100%;vertical-align:middle; position:relative;}
+
+.pagination{ position:absolute; height:1.2em; width:100%;bottom:0.8em;z-index:100; text-align:right; text-align:center;}
+
+.pagination .swiper-pagination-switch{ display:inline-block; height:0.7em; width:0.7em; background:#FFF; border-radius:50%; _display:inline; margin-right:1em;}
+
+.pagination .swiper-active-switch{ background:#44A5FE;}
+
+/* 图片自适应调整 并解决图片缩放的失真问题*/
+
+.clearfix img{ max-width:100%; height:auto;border:none; interpolation-mode: bicubic;}
+
+.clearfix{ background: #F0F0F0; max-width:100%; margin:auto;}
+
+@media screen and (max-width : 360px) {	
+	body{ font-size:11px;}
+	#wrap{ width:100%;}
+}
+
+@media screen and (min-width: 360px) and (max-width : 479px) {
+	body{ font-size:12px;}
+	#wrap{ width:100%;}	
+
+}
+
+@media screen and (min-width: 480px) and (max-width: 640px) {
+	body{ font-size:15px;}
+	#wrap{ width:100%;}	
+}
+
+

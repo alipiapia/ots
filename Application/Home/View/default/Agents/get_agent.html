@@ -1,0 +1,57 @@
+<extend name="Base/main" />
+
+<block name="body">
+
+<div class="location">
+    <span class="fa fa-home"></span>
+    <a href="{:U('Home/Index/index')}">首页</a>&nbsp;
+    <span class="fa fa-angle-right"></span>&nbsp;
+    <a href="javascript:void(0);">代理商管理</a>&nbsp;
+    <span class="fa fa-angle-right"></span>&nbsp;
+    <a href="javascript:void(0);" id="address">代理商查询</a>
+</div>
+
+<div class="new_cen">
+    <div class="new_left">
+        <ul id="tabs">
+            <li><a href="{:U('Home/Agents/get_agent')}">代理商查询</a></li>
+            <li><a href="{:U('Home/Certs/get_cert')}">证书查询</a></li>
+        </ul>
+    </div>
+    <div class="new_right">
+        <form name="form_agent" action="{:U('Home/Agents/get_agent')}" method="post">
+            <input type="text" name="agent_no" id="agent_no" value="{$agent_no}" placeholder="请输入代理商编号">
+            <input type="submit" value="代理商查询">
+            <span id="abc">　</span>
+        </form>
+    </div>
+    <div class="new_right">
+        <if condition="is_array($data)">
+            姓名：{$data.real_name}<br/>
+            手机号码：{$data.mobile}<br/>
+            代理商编号：{$data.agent_no}<br/>
+            授权开始日期：{$data.review_begin_time|date='Y-m-d H:i',###}<br/>
+            授权结束日期：{$data.review_end_time|date='Y-m-d H:i',###}<br/>
+            <notempty name="data.agent_grade">代理等级：{:getTitlebyPid($data.agent_grade)}<br/></notempty>
+            <notempty name="data.region">地区：{$data.region}<br/></notempty>
+            <notempty name="data.company">公司：{$data.company}<br/></notempty>
+        <elseif  condition="$data eq 'no'"/>
+            找不到代理商！
+        <else/>
+        </if>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+    var fm=document.getElementsByTagName('form')[0];
+
+    fm.onsubmit=function(){
+        if (fm.agent_no.value == '') {
+            document.getElementById('abc').innerHTML='编号不能为空！!';
+            fm.agent_no.focus();
+            return false;
+        }};
+</script>
+</block>
